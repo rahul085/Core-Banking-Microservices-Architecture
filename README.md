@@ -1,193 +1,231 @@
-🏦 Core Banking Microservices Architecture
+# 🏦 Core Banking Microservices Architecture
 
-An enterprise-grade, event-driven Core Banking System built with Spring Boot 3.x and Java 21.
+An enterprise-grade, event-driven Core Banking System built with **Spring Boot 3.x** and **Java 21**.
 
 This project showcases real-world distributed system design using:
 
-Saga Orchestration (Temporal)
-Transactional Outbox Pattern (Kafka)
-Resilient Microservices (Resilience4j)
-🚀 Overview
+- Saga Orchestration (Temporal)
+- Transactional Outbox Pattern (Kafka)
+- Resilient Microservices (Resilience4j)
+
+---
+
+## 🚀 Overview
 
 This system simulates a modern banking backend where multiple services collaborate to perform secure and reliable financial transactions.
 
-✔ Fully decoupled microservices
-✔ Event-driven communication
-✔ Strong consistency with Saga orchestration
-✔ Production-grade security and resilience
+✔ Fully decoupled microservices  
+✔ Event-driven communication  
+✔ Strong consistency with Saga orchestration  
+✔ Production-grade security and resilience  
 
-🏗️ High-Level Architecture
+---
+
+## 🏗️ High-Level Architecture
 
 The system is divided into independent microservices communicating via:
 
-Synchronous Communication → REST APIs (via API Gateway)
-Asynchronous Communication → Apache Kafka events
+- **Synchronous Communication** → REST APIs (via API Gateway)  
+- **Asynchronous Communication** → Apache Kafka events  
 
 👉 Ensures:
-Loose coupling
-High scalability
-Fault tolerance
+- Loose coupling  
+- High scalability  
+- Fault tolerance  
 
-✔ Distributed consistency is maintained using Temporal workflows
-✔ Ensures all-or-nothing transactions (Saga pattern)
+✔ Distributed consistency is maintained using Temporal workflows  
+✔ Ensures all-or-nothing transactions (Saga pattern)  
 
-🧩 Microservices Overview
-🔹 API Gateway (:8080)
-Single entry point
-JWT validation & authentication
-Request routing
-Injects headers (X-User-Id)
+---
 
-🔹 Eureka Discovery Server (:7001)
-Service registry
-Enables dynamic service discovery
-Load balancing support
+## 🧩 Microservices Overview
 
-🔹 Auth Service (:7005)
-User registration & login
-JWT token generation (Access + Refresh)
-Central identity provider
+### 🔹 API Gateway (:8080)
+- Single entry point  
+- JWT validation & authentication  
+- Request routing  
+- Injects headers (`X-User-Id`)  
 
-🔹 Account Service (:7002)
-Manages bank accounts
-Handles debit/credit operations
-Maintains account balances
+---
 
-🔹 Transaction Service (:8083)
-Core orchestration engine
-Validates security (BOLA/IDOR protection)
-Starts Temporal workflows
-Implements Transactional Outbox pattern
+### 🔹 Eureka Discovery Server (:7001)
+- Service registry  
+- Enables dynamic service discovery  
+- Load balancing support  
 
-🔹 Notification Service (:7004)
-Kafka consumer
-Sends email notifications
-Fetches user data from Auth Service
+---
 
+### 🔹 Auth Service (:7005)
+- User registration & login  
+- JWT token generation (Access + Refresh)  
+- Central identity provider  
 
-⚙️ Key Architectural Patterns
+---
 
-🔁 Saga Pattern (Orchestration)
-Managed using Temporal
-Handles multi-step transactions
-Supports rollback (compensation logic)
+### 🔹 Account Service (:7002)
+- Manages bank accounts  
+- Handles debit/credit operations  
+- Maintains account balances  
 
-📦 Transactional Outbox Pattern
-Prevents dual-write problems
-Writes DB + event in single transaction
-Reliable Kafka publishing via relay
+---
 
-📡 Event-Driven Architecture
-Powered by Apache Kafka
-Decouples services
-Enables async communication
+### 🔹 Transaction Service (:8083)
+- Core orchestration engine  
+- Validates security (BOLA/IDOR protection)  
+- Starts Temporal workflows  
+- Implements Transactional Outbox pattern  
 
-🔐 Security (BOLA / IDOR Protection)
-Verifies ownership of resources
-Prevents unauthorized account access
-JWT-based authentication
+---
 
+### 🔹 Notification Service (:7004)
+- Kafka consumer  
+- Sends email notifications  
+- Fetches user data from Auth Service  
 
-⚡ Resilience & Fault Tolerance
-Resilience4j:
-Circuit Breaker
-Rate Limiting
-Prevents cascading failures
+---
 
+## ⚙️ Key Architectural Patterns
 
-💻 Tech Stack
-Category	Technologies
-Core	Java 21, Spring Boot 3.x
-Microservices	Spring Cloud (Gateway, Eureka)
-Database	PostgreSQL / Oracle DB
-ORM	Spring Data JPA, Hibernate
-Messaging	Apache Kafka
-Orchestration	Temporal
-Security	Spring Security, JWT
-Resilience	Resilience4j
-Tools	Maven, Lombok, Postman
+### 🔁 Saga Pattern (Orchestration)
+- Managed using Temporal  
+- Handles multi-step transactions  
+- Supports rollback (compensation logic)  
 
-🛠️ Local Setup & Execution
-📌 Prerequisites
+---
 
-Before running services, ensure:
+### 📦 Transactional Outbox Pattern
+- Prevents dual-write problems  
+- Writes DB + event in single transaction  
+- Reliable Kafka publishing via relay  
 
-✅ Database (Postgres / Oracle) is running
-✅ Kafka & Zookeeper running on 9092
-✅ Temporal Server running
-UI → http://localhost:8080
-gRPC → localhost:7233
+---
 
-▶️ Boot Order (IMPORTANT)
+### 📡 Event-Driven Architecture
+- Powered by Apache Kafka  
+- Decouples services  
+- Enables async communication  
+
+---
+
+### 🔐 Security (BOLA / IDOR Protection)
+- Verifies ownership of resources  
+- Prevents unauthorized account access  
+- JWT-based authentication  
+
+---
+
+### ⚡ Resilience & Fault Tolerance
+
+**Resilience4j:**
+- Circuit Breaker  
+- Rate Limiting  
+- Prevents cascading failures  
+
+---
+
+## 💻 Tech Stack
+
+| Category        | Technologies |
+|----------------|-------------|
+| Core           | Java 21, Spring Boot 3.x |
+| Microservices  | Spring Cloud (Gateway, Eureka) |
+| Database       | PostgreSQL / Oracle DB |
+| ORM            | Spring Data JPA, Hibernate |
+| Messaging      | Apache Kafka |
+| Orchestration  | Temporal |
+| Security       | Spring Security, JWT |
+| Resilience     | Resilience4j |
+| Tools          | Maven, Lombok, Postman |
+
+---
+
+## 🛠️ Local Setup & Execution
+
+### 📌 Prerequisites
+
+- ✅ Database (Postgres / Oracle) running  
+- ✅ Kafka & Zookeeper running on port 9092  
+- ✅ Temporal Server running  
+  - UI → http://localhost:8080  
+  - gRPC → localhost:7233  
+
+---
+
+### ▶️ Boot Order (IMPORTANT)
 
 Start services in this order:
-discovery-server
-auth-service
-account-service
-transaction-service
-notification-service
-api-gateway
 
-🚦 API Usage Flow
-1️⃣ Authenticate
-POST http://localhost:8080/api/v1/auth/login
+1. discovery-server  
+2. auth-service  
+3. account-service  
+4. transaction-service  
+5. notification-service  
+6. api-gateway  
 
-Request Body:
-{
-  "email": "user@example.com",
-  "password": "password"
-}
+---
 
-Response:
-JWT Access Token
+## 🚦 API Usage Flow
 
-2️⃣ Initiate Transfer
-POST http://localhost:8080/api/v1/transactions/transfer
+### 1️⃣ Authenticate
 
-Headers:
+  POST http://localhost:8080/api/v1/auth/login
+  Request Body:
+  {
+    "email": "user@example.com",
+    "password": "password"
+  }
+  Response:
+  JWT Access Token
 
-Authorization: Bearer <JWT_TOKEN>
-Idempotency-Key: unique-uuid
+###2️⃣ Initiate Transfer
 
-Body:
+  POST http://localhost:8080/api/v1/transactions/transfer
+  
+  Headers:
+  Authorization: Bearer <JWT_TOKEN>
+  Idempotency-Key: unique-uuid
+  
+  Body:
+  {
+    "fromAccountId": 100,
+    "toAccountId": 200,
+    "amount": 500.00
+  }
 
-{
-  "fromAccountId": 100,
-  "toAccountId": 200,
-  "amount": 500.00
-}
+###3️⃣ Internal Flow
+  API Gateway validates JWT
+  Request routed to Transaction Service
+  Rate limiting + ownership validation
+  Temporal starts Saga workflow
+  Account Service performs debit/credit
+  Transaction saved + Outbox event created
+  Kafka publishes event
+  Notification Service sends email
 
-3️⃣ Internal Flow (Behind the Scenes)
-API Gateway validates JWT
-Request routed to Transaction Service
-Rate limiting + ownership validation
-Temporal starts Saga workflow
-Account Service performs debit/credit
-Transaction saved + Outbox event created
-Kafka publishes event
-Notification Service sends email
+  ###🧠 Key Highlights
+  ✅ Distributed transaction handling without 2PC
+  ✅ Exactly-once event publishing (Outbox pattern)
+  ✅ Secure microservices with JWT
+  ✅ Scalable & fault-tolerant design
+  ✅ Real-world banking use case implementation
 
-🧠 Key Highlights (Interview Focus)
-✅ Distributed transaction handling without 2PC
-✅ Exactly-once event publishing (Outbox pattern)
-✅ Secure microservices with JWT
-✅ Scalable & fault-tolerant design
-✅ Real-world banking use case implementation
+  ###🗺️ Roadmap
+   Loan Service
+  Temporal workflows
+  EMI calculations
+   Dockerization
+  docker-compose setup
+   Audit Service
+  Transaction history
+  Statement generation
+  
+  ###📌 Conclusion
 
-🗺️ Roadmap / Future Enhancements
- Loan Service
-Loan workflows using Temporal
-EMI calculations (flat & reducing)
- Dockerization
-Full system via docker-compose
- Audit Service
-Read-optimized reporting service
-Transaction history & statements
+  This project demonstrates:
+  
+  Strong consistency guarantees
+  High scalability
+  Robust security
+  Fault tolerance
 
-📌 Conclusion
-This project demonstrates production-grade microservices architecture with: 
-Strong consistency guarantees
-High scalability
-Robust security
-Fault tolerance
-It reflects real-world backend design used in modern fintech and banking systems.
+  It reflects real-world backend design used in modern fintech and banking systems.
