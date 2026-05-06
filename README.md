@@ -167,7 +167,7 @@ Read-optimized reporting service
 Transaction history & statements
 📌 Conclusion
 
-This project demonstrates production-grade microservices architecture with:
+This project demonstrates production-grade microservices architecture with: 
 
 Strong consistency guarantees
 High scalability
