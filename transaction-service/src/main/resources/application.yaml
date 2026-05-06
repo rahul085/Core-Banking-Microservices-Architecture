@@ -1,0 +1,48 @@
+server:
+  port: 7003
+
+spring:
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+  datasource:
+    url: jdbc:oracle:thin:@localhost:1521:XE
+    username: ${username}
+    password: ${password}
+    driver-class-name: oracle.jdbc.OracleDriver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  application:
+    name: transaction-service
+
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      accountServiceCb:
+        registerHealthIndicator: true
+        slidingWindowSize: 10 # Check the last 10 requests
+        failureRateThreshold: 50 # Trip if 50% (5 out of 10) fail
+        waitDurationInOpenState: 10s # Wait 10 seconds before trying again
+        permittedNumberOfCallsInHalfOpenState: 3 # Let 3 requests through to test if it's back up
+
+  ratelimiter:
+    instances:
+      transactionRateLimit:
+        limitForPeriod: 5 # Allow 5 requests
+        limitRefreshPeriod: 1s # ...every 1S
+        timeoutDuration: 0 # If limit is reached, fail immediately without waiting
+
+
+
+
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka
