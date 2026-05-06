@@ -177,7 +177,7 @@ Start services in this order:
   Response:
   JWT Access Token
 
-###2️⃣ Initiate Transfer
+### 2️⃣ Initiate Transfer
 
   POST http://localhost:8080/api/v1/transactions/transfer
   
@@ -192,7 +192,7 @@ Start services in this order:
     "amount": 500.00
   }
 
-###3️⃣ Internal Flow
+### 3️⃣ Internal Flow
   API Gateway validates JWT
   Request routed to Transaction Service
   Rate limiting + ownership validation
@@ -202,7 +202,7 @@ Start services in this order:
   Kafka publishes event
   Notification Service sends email
 
-  ###🧠 Key Highlights
+  ### 🧠 Key Highlights
   ✅ Distributed transaction handling without 2PC
   ✅ Exactly-once event publishing (Outbox pattern)
   ✅ Secure microservices with JWT
@@ -219,7 +219,7 @@ Start services in this order:
   Transaction history
   Statement generation
   
-  ###📌 Conclusion
+  ### 📌 Conclusion
 
   This project demonstrates:
   
