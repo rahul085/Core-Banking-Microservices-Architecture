@@ -1,5 +1,5 @@
 
-🏦 Core Banking Microservices Architecture
+#🏦 Core Banking Microservices Architecture
 An enterprise-grade, event-driven Core Banking System built with Spring Boot 3.x and Java 21. This project demonstrates advanced distributed system patterns, including Saga orchestration using Temporal, the Transactional Outbox Pattern with Apache Kafka, and fail-fast resilience using Resilience4j.
 
 🏗️ High-Level Architecture
