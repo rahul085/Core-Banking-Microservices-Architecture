@@ -209,7 +209,7 @@ Start services in this order:
   ✅ Scalable & fault-tolerant design
   ✅ Real-world banking use case implementation
 
-  ###🗺️ Roadmap
+  ### 🗺️ Roadmap
    Loan Service
   Temporal workflows
   EMI calculations
